@@ -1,6 +1,13 @@
 {% extends "modeladmin/index.html" %}
 
 {% block header_extra %}
-    {% include 'modeladmin/includes/button.html' with button=view.button_helper.export_button %}
-    {{ block.super }}{% comment %}Display the original buttons {% endcomment %}
+    {% if user_can_create %}
+        <div class="right">
+            <div class="addbutton">
+                {% include 'modeladmin/includes/button.html' with button=view.button_helper.add_button %}
+
+                {% include 'modeladmin/includes/button.html' with button=view.button_helper.export_button %}
+            </div>
+         </div>
+     {% endif %}
 {% endblock %}
