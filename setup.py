@@ -11,7 +11,7 @@ CLASSIFIERS = [
     'Environment :: Web Environment',
     'Framework :: Django',
     'Framework :: Django :: 2.1',
-    'Framework :: Django :: Wagtail',
+    'Framework :: Wagtail',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: BSD License',
     'Operating System :: OS Independent',
