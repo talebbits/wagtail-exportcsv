@@ -8,7 +8,6 @@ from wagtail.contrib.modeladmin.options import (ModelAdmin,
 from django.http import HttpResponse
 from django.utils.encoding import smart_str
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
 from django.conf.urls import url
 from django.utils.translation import ugettext as _
 from django.utils.decorators import method_decorator
@@ -20,6 +19,12 @@ from wagtail.contrib.modeladmin.helpers import AdminURLHelper, ButtonHelper
 from import_export.resources import modelresource_factory
 from import_export.formats.base_formats import CSV
 from datetime import datetime
+
+try:
+    # Django >= 2.0
+    from django.urls import reverse
+except Exception:
+    from django.core.urlresolvers import reverse
 
 
 class ExportButtonHelper(ButtonHelper):
@@ -151,7 +156,7 @@ class ExportModelAdminMixin(object):
 
     export_view_class = ExportView
     index_template_name = 'wagtail_exportcsv/exportcsv.html'
-    
+
     def get_admin_urls_for_registration(self):
         urls = super().get_admin_urls_for_registration()
         urls += (
@@ -165,7 +170,7 @@ class ExportModelAdminMixin(object):
         return urls
 
     def export_view(self, request):
-        
+
         kwargs = {'model_admin': self, 'resource_class': self.resource_class}
         view_class = self.export_view_class
         return view_class.as_view(**kwargs)(request)
