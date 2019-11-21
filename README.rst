@@ -22,13 +22,14 @@ And add ``wagtail_exportcsv`` to ``INSTALLED_APPS``
 Quick start
 -----------
 
-First, create a resource class to define a CSV export. Then add
-``ExportModelAdminMixin`` to your Wagtail ``ModelAdmin`` class. Example:
+First, create a resource class to define a CSV export (details for ModelResources
+can be found at https://django-import-export.readthedocs.io/en/latest/getting_started.html#creating-import-export-resource. Then add ``ExportModelAdminMixin`` to your Wagtail ``ModelAdmin`` class. Example:
 
 .. code-block:: python
 
     from import_export import resources
     from wagtail.contrib.modeladmin.options import ModelAdmin
+    from wagtail_exportcsv.admin import ExportModelAdminMixin
 
     class ExampleResource(resources.ModelResource):
 
